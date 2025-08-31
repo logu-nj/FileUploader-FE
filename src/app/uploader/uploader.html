@@ -1,0 +1,16 @@
+<section>
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">File Uploader</h1>
+        <div class="row mb-3 mx-0" style="height: 50px;">
+            <button class="btn col-6 h-100" [ngClass]="{'btn-primary':tabIndex===0}" (click)="tabIndex=0;">Single upload</button>
+            <button class="btn col-6 h-100" [ngClass]="{'btn-primary':tabIndex===1}" (click)="tabIndex=1;">Multi file upload</button>
+        </div>
+        @if(tabIndex===0){
+            <app-single-uploader></app-single-uploader>
+        }@else if(tabIndex===1){
+            <app-multi-uploader></app-multi-uploader>
+        }@else {
+            <app-file-preview></app-file-preview>
+        }
+    </div>
+</section>

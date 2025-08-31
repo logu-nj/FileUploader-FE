@@ -1,0 +1,7 @@
+<div class="mb-3">
+    <label for="formFile" class="form-label">Single file input</label>
+    <input class="form-control" type="file" id="formFile" accept=".jpg,.jpeg,.png,.pdf"  (change)="onFileSelected($event)">
+</div>
+    @if(fileObj){
+        <app-file-preview [fileObj]="fileObj" [enableUpload]="true"></app-file-preview>
+    }

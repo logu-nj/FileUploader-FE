@@ -1,0 +1,7 @@
+<div class="mb-3">
+  <label for="formFileMultiple" class="form-label">Multiple files</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event)">
+</div>
+    @if(fileObj){
+        <app-file-preview [fileObj]="fileObj" [enableUpload]="false" [multiUploader]="true"></app-file-preview>
+    }

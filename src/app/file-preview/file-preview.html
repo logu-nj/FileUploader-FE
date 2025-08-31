@@ -1,0 +1,66 @@
+<div class="row row-gap-3">
+    @for(file of fileObj; track $index) {
+    <div class="col-md-6 ">
+        <div class="card px-3 py-2 pb-4">
+            <div class="row  position-relative">
+                @if(enableUpload && file.uploading) {
+                <div class="progress position-absolute rounded top-0 start-0 w-100" style="height: 5px;">
+                    <div class="progress-bar progress-bar-striped" role="progressbar"
+                        [ngStyle]="{'width': file.progress + '%'}" aria-valuenow="10" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+                }
+                <div class="col-md-4">
+                    <!-- File preview -->
+                    <div class="img-box">
+                        @if(file.filePreview === 'pdf') {
+                        <p>📄 PDF File</p>
+                        } @else if(file.filePreview === 'other') {
+                        <p>📦 Other File</p>
+                        } @else {
+                        <img [src]="file.filePreview" alt="preview" class="img-fluid rounded">
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="d-flex flex-column justify-content-between h-100">
+                        <div>
+                            <h5 class="text-secondary">
+                                File name: {{ file.fileName }}
+                            </h5>
+                            <h6>File size: {{ file.fileSize }} bytes</h6>
+                            <h6>File type: {{ file.fileType }}</h6>
+                        </div>
+
+                        @if (enableUpload) {
+                        <button class="btn btn-primary d-block ms-auto" type="button" (click)="upload()"
+                            [disabled]="file.uploading">
+                            @if(file.uploading) {
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Uploading...
+                            } @else {
+                            Upload
+                            }
+                        </button>
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    }
+    @if (!enableUpload && multiUploader && fileObj?.length) {
+    <div class="mb-5">
+        <button class="btn btn-primary d-block ms-auto" type="button" (click)="upload()" [disabled]="false">
+            @if(false) {
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Uploading...
+            } @else {
+            Upload All
+            }
+        </button>
+    </div>
+    }
+</div>
